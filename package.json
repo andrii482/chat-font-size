@@ -1,0 +1,90 @@
+{
+  "name": "chat-font-size",
+  "displayName": "Chat Font Size",
+  "description": "Quickly change VS Code Copilot Chat font size with keyboard shortcuts and status bar",
+  "version": "0.1.0",
+  "publisher": "narayanaya",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "chatFontSize.increase",
+        "title": "Chat Font Size: Increase"
+      },
+      {
+        "command": "chatFontSize.decrease",
+        "title": "Chat Font Size: Decrease"
+      },
+      {
+        "command": "chatFontSize.reset",
+        "title": "Chat Font Size: Reset to Default"
+      },
+      {
+        "command": "chatFontSize.set",
+        "title": "Chat Font Size: Set Custom Size"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "chatFontSize.increase",
+        "key": "ctrl+alt+=",
+        "mac": "cmd+alt+="
+      },
+      {
+        "command": "chatFontSize.decrease",
+        "key": "ctrl+alt+-",
+        "mac": "cmd+alt+-"
+      },
+      {
+        "command": "chatFontSize.reset",
+        "key": "ctrl+alt+0",
+        "mac": "cmd+alt+0"
+      }
+    ],
+    "configuration": {
+      "title": "Chat Font Size",
+      "properties": {
+        "chatFontSize.step": {
+          "type": "number",
+          "default": 1,
+          "description": "Font size increment/decrement step in pixels"
+        },
+        "chatFontSize.default": {
+          "type": "number",
+          "default": 13,
+          "description": "Default font size to reset to (in pixels)"
+        },
+        "chatFontSize.min": {
+          "type": "number",
+          "default": 8,
+          "description": "Minimum allowed font size (in pixels)"
+        },
+        "chatFontSize.max": {
+          "type": "number",
+          "default": 30,
+          "description": "Maximum allowed font size (in pixels)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "prepackage": "npm run compile",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}
